@@ -14,8 +14,10 @@ import org.w3c.dom.Text;
 
 public class QuizActivity extends AppCompatActivity {
 
+
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
+
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
@@ -78,7 +80,9 @@ public class QuizActivity extends AppCompatActivity {
         mCheatButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                //Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+                Intent intent = CheatActivity.newIntent(QuizActivity.this, answerIsTrue);
                 startActivity(intent);
             }
         });
